@@ -14,19 +14,21 @@ class Usuario {
     }
 
     function getNombre() {
-        return $this->nombre;
+        return $this->db->real_escape_string($this->nombre);
     }
     
     function getApellidos() {
-        return $this->apellidos;
+        return $this->db->real_escape_string($this->apellidos);
     }
 
     function getEmail() {
-        return $this->email;
+        return $this->db->real_escape_string($this->email);
     }
 
-    function getPassword() {
-        return $this->password;
+    function getPassword($isLogin = null) {
+        return isset($isLogin) && !empty($isLogin) && $isLogin
+            ? $this->db->real_escape_string($this->password)
+            : password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     function getRol() {
@@ -34,19 +36,19 @@ class Usuario {
     }
 
     function setNombre($nombre) {
-        $this->nombre = $this->db->real_escape_string($nombre);
+        $this->nombre = $nombre;
     }
 
     function setApellidos($apellidos) {
-        $this->apellidos = $this->db->real_escape_string($apellidos);
+        $this->apellidos = $apellidos;
     }
 
     function setEmail($email) {
-        $this->email = $this->db->real_escape_string($email);
+        $this->email = $email;
     }
 
     function setPassword($password) {
-        $this->password = password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+        $this->password = $password;
     }
 
     function setRol($rol) {
@@ -60,6 +62,20 @@ class Usuario {
         $result  = $save ? true : false;
 
         return $result;
+    }
+
+    public function login() {
+        // Comprobar si existe el usuario
+        $sql = "select * from usuarios where email = '{$this->getEmail()}'";
+        $login = $this->db->query($sql);
+
+        if($login && $login->num_rows == 1) {
+            $usurio = $login->fetch_object();
+
+            // Verificar la constraseña
+            $verify = password_verify($this->getPassword(true), $usurio->password);
+            return $verify ? $usurio : false;
+        } else return false;
     }
 
 }

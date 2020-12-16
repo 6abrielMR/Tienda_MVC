@@ -1,8 +1,12 @@
 <!-- BARRA LATERAL -->
 <aside id="lateral">
     <div id="login" class="block_aside">
+        <?php if(!isset($_SESSION[identity_login])): ?>
         <h3>Entrar a la web</h3>
-        <form action="#" method="POST">
+            <?php if(isset($_SESSION[error_login])): ?>
+                <strong class="alert_error">Datos incorrectos</strong>
+            <?php endif; ?>
+        <form action="<?=base_url?>usuario/login" method="POST">
             <label for="email">Email</label>
             <input type="email" name="email">
             <label for="password">Password</label>
@@ -10,11 +14,21 @@
 
             <input type="submit" value="Enviar">
         </form>
+        <?php Helpers::deleteCurrentSession(error_login) ?>
+        <?php else: ?>
+        <h3><?=$_SESSION[identity_login]->nombre?> <?=$_SESSION[identity_login]->apellidos?></h3>
+        <?php endif; ?>
 
         <ul>
-            <li><a href="#">Mis pedidos</a></li>
-            <li><a href="#">Gestionar pedidos</a></li>
-            <li><a href="#">Gestionar categorias</a></li>
+            <?php if(isset($_SESSION[admin_login])): ?>
+                <li><a href="#">Gestionar categorias</a></li>
+                <li><a href="#">Gestionar productos</a></li>
+                <li><a href="#">Gestionar pedidos</a></li>
+            <?php endif; ?>
+            <?php if(isset($_SESSION[identity_login])): ?>
+                <li><a href="#">Mis pedidos</a></li>
+                <li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
+            <?php endif; ?>
         </ul>
     </div>
 </aside>
