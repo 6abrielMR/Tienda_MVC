@@ -18,6 +18,14 @@ a:hover {
     color: #555555;
 }
 
+.alert_succes {
+    color: green;
+}
+
+.alert_error {
+    color: tomato !important;
+}
+
 /* Container */
 #container {
     width: 80%;
