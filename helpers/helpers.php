@@ -31,4 +31,10 @@ class Helpers {
         }
     }
 
+    public static function isAdmin() {
+        if (!isset($_SESSION[admin_login])) {
+            header("Location: ".base_url);
+        } else return true;
+    }
+
 }

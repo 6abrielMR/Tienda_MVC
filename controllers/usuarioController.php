@@ -30,7 +30,7 @@ class usuarioController {
                 $save ? $_SESSION[session_register] = "complete" : $_SESSION[session_register] = "failed";
             } else $_SESSION[session_register] = "failed_data";
         } else $_SESSION[session_register] = "failed";
-        header("Location: ".base_url."usuario/registro");
+        header("Location: ".base_url."categoria/crear");
     }
 
     public function login() {
