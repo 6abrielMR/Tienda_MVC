@@ -16,13 +16,13 @@
             </div>
         </header>
         <!-- MENU -->
+        <?php $categorias = Helpers::showCategorias() ?>
         <nav id="menu">
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="#">Categoria 1</a></li>
-                <li><a href="#">Categoria 2</a></li>
-                <li><a href="#">Categoria 3</a></li>
-                <li><a href="#">Categoria 4</a></li>
+                <?php while($currentCategoria = $categorias->fetch_object()): ?>
+                    <li><a href="#"><?=$currentCategoria->nombre?></a></li>
+                <?php endwhile; ?>
             </ul>
         </nav>
 

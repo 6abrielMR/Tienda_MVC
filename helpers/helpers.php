@@ -37,4 +37,10 @@ class Helpers {
         } else return true;
     }
 
+    public static function showCategorias() {
+        require_once 'models/categoria.php';
+        $categoria = new Categoria();
+        return $categoria->getAll();
+    }
+
 }

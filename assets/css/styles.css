@@ -44,8 +44,12 @@ table td {
     border-top: 1px solid #ccc;
 }
 
-table td:first-child {
+table td:first-child, table tr .box {
     border-right: 1px solid #ccc;
+}
+
+table td:last-child {
+    border-right: none;
 }
 
 /* Container */
