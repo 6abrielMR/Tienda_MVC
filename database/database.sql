@@ -56,6 +56,7 @@ create table lineas_pedidos(
     id int(255) auto_increment not null,
     pedido_id int(255) not null,
     producto_id int(255) not null,
+    unidades int(255) not null,
     constraint pk_lineas_pedidos primary key(id),
     constraint fk_linea_pedido foreign key(pedido_id) references pedidos(id),
     constraint fk_linea_producto foreign key(producto_id) references productos(id),

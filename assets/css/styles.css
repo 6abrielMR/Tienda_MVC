@@ -48,6 +48,12 @@ table td:first-child, table tr .box {
     border-right: 1px solid #ccc;
 }
 
+.box-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 table td:last-child {
     border-right: none;
 }
@@ -188,10 +194,16 @@ nav ul li {
 }
 
 /* Forms */
+.form_container {
+    width: 50%;
+}
+
 label,
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
+textarea,
 select {
     display: block;
     width: 95%;
@@ -202,6 +214,8 @@ select {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
+textarea,
 select {
     border: 1px solid #c9c9c9;
     box-shadow: 0 0 2px #ccc inset;
@@ -213,7 +227,9 @@ select {
 
 input[type="text"]:focus,
 input[type="password"]:focus,
-input[type="email"]:focus {
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus {
     border: 1px solid #1579B5;
     color: black;
 }
@@ -242,9 +258,29 @@ button, .button {
     align-items: center;
 }
 
+.btn-edit {
+    background: orange;
+    margin-bottom: 8px;
+}
+
+.btn-del {
+    background: tomato;
+}
+
 .btn-small {
     width: 120px;
     margin-bottom: 20px;
+}
+
+.btn-controllers {
+    width: 20px;
+    height: 10px;
+    background: #2979CD;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 label,
@@ -253,6 +289,10 @@ input[type="submit"],
 button {
     display: block;
     margin-top: 10px;
+}
+
+.thumb {
+    width: 100px;
 }
 
 /* Central */
@@ -281,14 +321,25 @@ button {
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product a {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .product img {
-    width: 100px;
+    height: 150px;
     margin-bottom: 10px;
+}
+
+.img_carrito {
+    height: 80px;
 }
 
 .product h2 {
@@ -302,6 +353,46 @@ button {
     margin-bottom: 10px;
 }
 
+#detail_product {
+    width: 100%;
+    display: flex;
+}
+
+#detail_product img {
+    width: 40%;
+    margin-right: 40px;
+}
+
+#content_product {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+#content_product h3{
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #555;
+    margin-top: 0;
+}
+
+#content_product p {
+    font-size: 26px;
+    font-weight: 600;
+    color: #01B1EA;
+    margin-bottom: 16px;
+}
+
+#content_product a {
+    width: 30%;
+}
+
+#content_product #stock {
+    font-size: 16px;
+    font-weight: 300;
+    color: #555;
+}
+
 /* Footer */
 footer {
     clear: both;
@@ -311,4 +402,37 @@ footer {
     color: white;
     background: #222222;
     border-top: 5px solid #01B1EA;
+}
+
+/* Carrito */
+#total_pedido {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 20px;
+}
+
+.btn-pedido {
+    width: 200px;
+    margin-right: 30px;
+}
+
+#total_pedido h3 {
+    margin-top: 20px;
+    margin-right: 30px;
+    color: #222;
+}
+
+#del-carrito {
+    width: 20%;
+}
+
+#del-carrito a {
+    margin-left: 30px;
+}
+
+#totalPedido {
+    display: flex;
+    align-items: baseline;
 }

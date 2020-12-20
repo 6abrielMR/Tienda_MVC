@@ -19,9 +19,9 @@
         <?php $categorias = Helpers::showCategorias() ?>
         <nav id="menu">
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="<?=base_url?>">Inicio</a></li>
                 <?php while($currentCategoria = $categorias->fetch_object()): ?>
-                    <li><a href="#"><?=$currentCategoria->nombre?></a></li>
+                    <li><a href="<?=base_url?>categoria/ver&id=<?=$currentCategoria->id?>"><?=$currentCategoria->nombre?></a></li>
                 <?php endwhile; ?>
             </ul>
         </nav>

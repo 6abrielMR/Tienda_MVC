@@ -37,10 +37,48 @@ class Helpers {
         } else return true;
     }
 
+    public static function isIdentity() {
+        if (!isset($_SESSION[identity_login])) {
+            header("Location: ".base_url);
+        } else return true;
+    }
+
     public static function showCategorias() {
         require_once 'models/categoria.php';
         $categoria = new Categoria();
         return $categoria->getAll();
+    }
+
+    public static function statsCarrito() {
+        $stats = array(
+            "count" => 0,
+            "total" => 0
+        );
+
+        if (isset($_SESSION[session_carrito])) {
+            $stats["count"] = count($_SESSION[session_carrito]);
+
+            foreach ($_SESSION[session_carrito] as $producto) {
+                $stats["total"] += $producto["precio"]*$producto['unidades'];
+            }
+        }
+
+        return $stats;
+    }
+
+    public static function showState($state) {
+        switch ($state) {
+            case "confirm":
+                return "Pendiente";
+            case "preparation":
+                return "En preparación";
+            case "ready":
+                return "Preparado para enviar";
+            case "sended":
+                return "Enviado";
+            default:
+                return "Pendiente";
+        }
     }
 
 }

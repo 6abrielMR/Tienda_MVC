@@ -10,3 +10,7 @@ define("identity_login", "identity");
 define("admin_login", "admin");
 define("error_login", "error_login");
 define("session_categoria", "categoria");
+define("session_producto", "producto");
+define("session_editar", "edit");
+define("session_carrito", "carrito");
+define("session_pedido", "pedido");
